@@ -1,0 +1,10 @@
+.vs/
+*.db
+*.db-wal
+*.db-shm
+*.opendb
+*.user
+*.filters
+*.suo
+*.vcxproj.user
+*.VC.db
