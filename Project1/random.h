@@ -3,9 +3,8 @@
 
 class Random {
 private:
-	std::mt19937 eng_;
+	Random() = delete;
+	Random(unsigned int seed) = delete;;
 public:
-	Random();
-	Random(unsigned int seed);
-	std::mt19937& engine() noexcept { return eng_; }
+	static std::mt19937& engine();
 };
