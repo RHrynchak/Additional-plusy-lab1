@@ -1,10 +1,54 @@
+# Visual Studio
 .vs/
-*.db
-*.db-wal
-*.db-shm
-*.opendb
-*.user
-*.filters
 *.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+
+# CMake / MSBuild intermediates
 *.vcxproj.user
+*.vcxproj.filters
 *.VC.db
+*.opendb
+*.tlog
+*.idb
+*.pdb
+*.ipch
+
+# IntelliSense / Code model
+*.iobj
+*.ipdb
+*.ilk
+
+# Module interface files (C++20 modules)
+*.ifc
+*.ifc.*
+*.ifc.dt
+*.ifc.dt.*
+*.json
+*.json.*
+*.command
+
+# Other temporary
+*.log
+*.tmp
+*.cache
+*.db
+*.db-shm
+*.db-wal
+
+# Executables
+*.exe
+*.dll
+*.lib
+*.app
+*.out
