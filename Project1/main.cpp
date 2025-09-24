@@ -35,20 +35,17 @@ void readInput( int& suits, int& cards_drawn )
 	}
 } 
 
-void draw_cards( std::vector<int>& stack_length, int suits, int n )
+void draw_cards( vector<int>& stack_length, int suits, int n )
 {
 	Dealer dealer( suits );
 	Card prev = dealer();
-	cout << "1: " << prev.to_string() << '\n';
 	int length = 1;
 	for ( int i = 1; i < n; ++i ){
 		Card drawn = dealer();
 		if ( drawn < prev ){
 			stack_length.push_back( length );
 			length = 0;
-			cout << "New stack: " << '\n';
 		}
-		cout << i + 1 << ": " << drawn.to_string() << '\n';
 		++length;
 		prev = drawn;
 	}
@@ -56,26 +53,26 @@ void draw_cards( std::vector<int>& stack_length, int suits, int n )
 	sort( stack_length.begin(), stack_length.end() );
 }
 
-void analise( std::vector<int>& stack_length, int suits, int n )
+void analise( vector<int>& stack_length, int suits, int n )
 {
-  ofstream f("output.txt");
-  pair<int, int> most_frequent_length {0, -1};
-  int pos = 0;
-  for ( int length = 1; length <= min(n, ranks * suits + suits); ++length ){
-    int num = 0;
-    while (pos < stack_length.size() && stack_length[pos]==length){
-      ++num;
-      ++pos;
-    }
-    f<<"Stacks with length: " << length << " " << (double)num / stack_length.size() * 100 << "%" << '\n';
-  }
-  f<<"Average stack length: " << (double)n / stack_length.size() << '\n';
-  double median;
-  if ( stack_length.size() % 2 == 0 )
-    median = (stack_length[stack_length.size()/2 -1] + stack_length[stack_length.size()/2] ) / 2;
-  else
-    median = stack_length[stack_length.size()/2];
-  f<<"Stack length median: " << median << '\n';
+	ofstream f("output.txt");
+	pair<int, int> most_frequent_length {0, -1};
+	int pos = 0;
+	for ( int length = 1; length <= min(n, ranks * suits + suits); ++length ){
+		int num = 0;
+		while (pos < stack_length.size() && stack_length[pos]==length){
+		++num;
+		++pos;
+		}
+		f<<"Stacks with length: " << length << " " << (double)num / stack_length.size() * 100 << "%" << '\n';
+	}
+	f<<"Average stack length: " << (double)n / stack_length.size() << '\n';
+	double median;
+	if ( stack_length.size() % 2 == 0 )
+		median = (stack_length[stack_length.size()/2 -1] + stack_length[stack_length.size()/2] ) / 2;
+	else
+		median = stack_length[stack_length.size()/2];
+	f<<"Stack length median: " << median << '\n';
 }
 
 int main()
@@ -89,7 +86,7 @@ int main()
 		return 1;
 	}
 
-	std::vector<int> stack_length;
+	vector<int> stack_length;
 	draw_cards( stack_length, suits, n );
 
 	analise( stack_length, suits, n );
