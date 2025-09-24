@@ -64,7 +64,7 @@ void analise( vector<int>& stack_length, int suits, int n )
 		++num;
 		++pos;
 		}
-		f<<"Stacks with length: " << length << " " << (double)num / stack_length.size() * 100 << "%" << '\n';
+		f<<"Stacks with length " << length << ": " << (double)num / stack_length.size() * 100 << "%" << '\n';
 	}
 	f<<"Average stack length: " << (double)n / stack_length.size() << '\n';
 	double median;
