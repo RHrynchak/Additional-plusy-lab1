@@ -5,7 +5,7 @@
 Deck::Deck ( int suits ) : m_suits( suits ){
     for ( int suit = 1; suit <= m_suits; ++suit ){
         for ( int rank = 1; rank <= 13; ++rank )
-            m_deck.push_back( { suit, static_cast<Card::Rank>( rank ) } ); 
+            m_deck.push_back(Card(suit, rank));
     }
     std::shuffle( m_deck.begin(), m_deck.end(), Random::engine() );
 }

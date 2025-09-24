@@ -6,7 +6,7 @@ class Card {
 public:
 
     Card() = default;
-    Card(int suit, Rank rank);
+    Card(int suit, int rank);
 
     int getSuit() const { return suit; }
     int getRank() const { return rank; }

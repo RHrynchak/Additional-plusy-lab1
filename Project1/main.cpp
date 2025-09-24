@@ -91,8 +91,7 @@ int main()
 
 	std::vector<int> stack_length;
 	draw_cards( stack_length, suits, n );
-	for ( int i = 0; i < stack_length.size(); ++i )
-		cout << stack_length[i] << " ";
+
 	analise( stack_length, suits, n );
 	
 	return 0;
