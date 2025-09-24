@@ -4,6 +4,7 @@
 #include "dealer.h"
 
 using namespace std;
+const int ranks = 13;
 
 void readInput( int& suits, int& cards_drawn )
 {
@@ -57,7 +58,24 @@ void draw_cards( std::vector<int>& stack_length, int suits, int n )
 
 void analise( std::vector<int>& stack_length, int suits, int n )
 {
-
+  ofstream f("output.txt");
+  pair<int, int> most_frequent_length {0, -1};
+  int pos = 0;
+  for ( int length = 1; length <= min(n, ranks * suits + suits); ++length ){
+    int num = 0;
+    while (pos < stack_length.size() && stack_length[pos]==length){
+      ++num;
+      ++pos;
+    }
+    f<<"Stacks with length: " << length << " " << (double)num / stack_length.size() * 100 << "%" << '\n';
+  }
+  f<<"Average stack length: " << (double)n / stack_length.size() << '\n';
+  double median;
+  if ( stack_length.size() % 2 == 0 )
+    median = (stack_length[stack_length.size()/2 -1] + stack_length[stack_length.size()/2] ) / 2;
+  else
+    median = stack_length[stack_length.size()/2];
+  f<<"Stack length median: " << median << '\n';
 }
 
 int main()
