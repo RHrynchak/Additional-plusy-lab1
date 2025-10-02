@@ -1,3 +1,5 @@
+//Гринчак Роман, компілятор MSVC
+
 #include <iostream>
 #include <fstream>
 #include <algorithm>
@@ -56,23 +58,33 @@ void draw_cards( vector<int>& stack_length, int suits, int n )
 void analise( vector<int>& stack_length, int suits, int n )
 {
 	ofstream f("output.txt");
-	pair<int, int> most_frequent_length {0, -1};
-	int pos = 0;
-	for ( int length = 1; length <= min(n, TOTAL_RANKS * suits + suits); ++length ){
-		int num = 0;
-		while (pos < stack_length.size() && stack_length[pos]==length){
-			++num;
-			++pos;
-		}
-		f<<"Stacks with length " << length << ": " << (double)num / stack_length.size() * 100 << "%" << '\n';
+	if ( TOTAL_RANKS == 1 ){
+		f<<"Stacks with length " << n << ": " << 100 << "%" << '\n';
+		f<<"Average stack length: " << n << '\n';
+		f<<"Stack length median: " << n << '\n';
 	}
-	f<<"Average stack length: " << (double)n / stack_length.size() << '\n';
-	double median;
-	if ( stack_length.size() % 2 == 0 )
-		median = (stack_length[stack_length.size()/2 -1] + stack_length[stack_length.size()/2] ) / 2;
-	else
-		median = stack_length[stack_length.size()/2];
-	f<<"Stack length median: " << median << '\n';
+	else{
+		pair<int, int> most_frequent_length {0, -1};
+		int pos = 0;
+		for ( int length = 1; length <= min(n, TOTAL_RANKS * suits + suits); ++length ){
+			int num = 0;
+			while (pos < stack_length.size() && stack_length[pos]==length){
+				++num;
+				++pos;
+			}
+			f<<"Stacks with length " << length << ": " << (double)num / stack_length.size() * 100 << "%" << '\n';
+			if ( num > most_frequent_length.second )
+				most_frequent_length = { length, num };
+		}
+		f<<"Most frequent stack length: " << most_frequent_length.first << '\n';
+		f<<"Average stack length: " << (double)n / stack_length.size() << '\n';
+		double median;
+		if ( stack_length.size() % 2 == 0 )
+			median = (stack_length[stack_length.size()/2 -1] + stack_length[stack_length.size()/2] ) / 2;
+		else
+			median = stack_length[stack_length.size()/2];
+		f<<"Stack length median: " << median << '\n';
+	}
 }
 
 int main()
