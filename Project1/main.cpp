@@ -1,4 +1,5 @@
 //Гринчак Роман, компілятор MSVC
+//Тупчій Олександра, компілятор MSVC
 
 #include <iostream>
 #include <fstream>
